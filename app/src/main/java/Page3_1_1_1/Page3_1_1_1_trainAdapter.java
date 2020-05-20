@@ -260,12 +260,35 @@ public class Page3_1_1_1_trainAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
                     //api 트래픽 다 써서 임의값 넣어놓음
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
-                    completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "01:43", "03:22", "d", "무궁화"));
+                    String [] split = items.get(pos).text_shadow.split(",");
+                    if(split[0].equals("부산")) {
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "05:35", "09:06", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "06:21", "09:47", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "07:27", "10:43", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "10:25", "13:45", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "14:22", "17:45", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "16:25", "19:45", " ", "무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "18:25", "21:56", " ", "무궁화"));
+                    } else if(split[0].equals("순천")){
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "06:30"+"\n"+"09:25", "08:55"+"\n"+"10:00", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "09:10"+"\n"+"12:03", "11:38"+"\n"+"12:36", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "12:41"+"\n"+"16:16", "15:39"+"\n"+"19:51", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "17:20"+"\n"+"20:05", "19:45"+"\n"+"20:40", " ", "무궁화"+"\n"+"무궁화"));
+                    } else if(split[0].equals("서울")){
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "05:35"+"\n"+"10:06", "09:06"+"\n"+"11:06", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "06:21"+"\n"+"10:47", "09:47"+"\n"+"11:47", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "07:27"+"\n"+"12:43", "10:43"+"\n"+"13:43", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "10:25"+"\n"+"13:55", "13:45"+"\n"+"14:55", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "12:25"+"\n"+"16:45", "15:45"+"\n"+"15:45", " ", "무궁화"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "14:22"+"\n"+"18:45", "17:45"+"\n"+"16:45", " ", "무궁화"+"\n"+"무궁화"));
+
+                    }else{
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "00:04"+"\n"+"00:35","00:24"+"\n"+"02:07", " ", "무궁화"+"\n"+"ITX-새마을"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "09:48"+"\n"+"10:46","10:08"+"\n"+"12:07", " ", "무궁화"+"\n"+"ITX-새마을"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "10:44"+"\n"+"11:19","11:07"+"\n"+"12:33", " ", "무궁화"+"\n"+"ITX-새마을"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "16:41"+"\n"+"17:22","17:01"+"\n"+"18:57", " ", "새마을"+"\n"+"무궁화"));
+                        completeList.add(new Page3_1_1_1_bottomSheet_Adapter.Api_Item(Page3_1_1_1_bottomSheet_Adapter.HEADER, "17:46"+"\n"+"18:27","18:08"+"\n"+"20:01", " ", "무궁화"+"\n"+"무궁화"));
+                    }
 
                     //바텀시트 어댑터 연결
                     Page3_1_1_1_bottomSheet_Adapter adapter = new Page3_1_1_1_bottomSheet_Adapter(completeList, context);
@@ -385,7 +408,7 @@ public class Page3_1_1_1_trainAdapter extends RecyclerView.Adapter<RecyclerView.
             try{
                 url = new URL("http://openapi.tago.go.kr/openapi/service/TrainInfoService/" +
                         "getStrtpntAlocFndTrainInfo?serviceKey=7LT0Q7XeCAuzBmGUO7LmOnrkDGK2s7GZIJQdvdZ30lf7FmnTle%2BQoOqRKpjcohP14rouIrtag9KOoCZe%2BXuNxg%3D%3D&" +
-                        "numOfRows=10" +
+                        "numOfRows=20" +
                         "&pageNo=1&" +
                         "depPlaceId=" + startCode +
                         "&arrPlaceId=" + endCode +

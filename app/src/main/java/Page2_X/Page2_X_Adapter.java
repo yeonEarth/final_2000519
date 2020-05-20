@@ -29,12 +29,12 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
 
     private Context context;
     private List<Page2_X_Main.Recycler_item> items;  //리사이클러뷰 안에 들어갈 값 저장
-    private OnItemClick mCallback;
+    private Page2_X_Interface mCallback;
     String cityName;
 
 
     //메인에서 불러올 때, 이 함수를 씀
-    public Page2_X_Adapter(Context context, List<Page2_X_Main.Recycler_item> items, String cityName,  OnItemClick mCallback) {
+    public Page2_X_Adapter(Context context, List<Page2_X_Main.Recycler_item> items, String cityName,  Page2_X_Interface mCallback) {
         this.context=context;
         this.items=items;   //리스트
         this.cityName = cityName;

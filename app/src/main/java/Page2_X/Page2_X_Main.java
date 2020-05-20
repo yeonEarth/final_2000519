@@ -56,7 +56,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View.OnClickListener {
+public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface, View.OnClickListener {
 
     int station_code = 9999;
     String[] arr_line = null;
@@ -105,7 +105,7 @@ public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View
     //리사이클러뷰 관련
     RecyclerView recyclerView;
     Page2_X_Adapter adapter;
-    private DbOpenHelper mDbOpenHelper;
+    DbOpenHelper mDbOpenHelper;
     List<Recycler_item> items = new ArrayList<>();
     private  Button[] btn = new Button[8];
 
@@ -127,7 +127,7 @@ public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View
         height = size.y - (int)(100 * d);
 
         //데이터베이스 관련
-        mDbOpenHelper = new DbOpenHelper(this);
+        mDbOpenHelper = new DbOpenHelper(Page2_X_Main.this);
         mDbOpenHelper.open();
         mDbOpenHelper.create();
 
@@ -263,7 +263,7 @@ public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View
                         pastVisiblesItems = gridLayoutManager.findFirstVisibleItemPosition();
 
                         //받아온 api 개수가 20개가 안되면 다음 페이지가 없다고 판단. false로 바꿔줌
-                        if(name_1.length < 5){
+                        if(name_1.length < 10){
                             isLoadData = false;
                         }
 
@@ -733,7 +733,7 @@ public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View
                 url = "https://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?serviceKey=" +
                         "7LT0Q7XeCAuzBmGUO7LmOnrkDGK2s7GZIJQdvdZ30lf7FmnTle%2BQoOqRKpjcohP14rouIrtag9KOoCZe%2BXuNxg%3D%3D" +
                         "&pageNo=" + page +
-                        "&numOfRows=5&MobileApp=AppTest&MobileOS=ETC&arrange=B" +
+                        "&numOfRows=10&MobileApp=AppTest&MobileOS=ETC&arrange=B" +
                         "&contentTypeId=" + contentTypeId +
                         "&sigunguCode=" +
                         "&areaCode=" + areaCode +
@@ -745,7 +745,7 @@ public class Page2_X_Main extends AppCompatActivity implements OnItemClick, View
                 url = "https://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?serviceKey=" +
                         "7LT0Q7XeCAuzBmGUO7LmOnrkDGK2s7GZIJQdvdZ30lf7FmnTle%2BQoOqRKpjcohP14rouIrtag9KOoCZe%2BXuNxg%3D%3D" +
                         "&pageNo=" + page +
-                        "&numOfRows=5&MobileApp=AppTest&MobileOS=ETC&arrange=B" +
+                        "&numOfRows=10&MobileApp=AppTest&MobileOS=ETC&arrange=B" +
                         "&contentTypeId=" + contentTypeId +
                         "&sigunguCode=" + sigunguCode +
                         "&areaCode=" + areaCode +

@@ -53,6 +53,7 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import DB.Train_DbOpenHelper;
+import Page3_1_1_1.Page3_1_1_1_bottomSheet_Adapter;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
@@ -632,7 +633,7 @@ public class Page1_Main extends AppCompatActivity implements  Page1_pagerAdapter
             try{
                 url = new URL("http://openapi.tago.go.kr/openapi/service/TrainInfoService/" +
                         "getStrtpntAlocFndTrainInfo?serviceKey=7LT0Q7XeCAuzBmGUO7LmOnrkDGK2s7GZIJQdvdZ30lf7FmnTle%2BQoOqRKpjcohP14rouIrtag9KOoCZe%2BXuNxg%3D%3D&" +
-                        "numOfRows=2" +
+                        "numOfRows=20" +
                         "&pageNo=1&" +
                         "depPlaceId=" + startCode +
                         "&arrPlaceId=" + endCode +

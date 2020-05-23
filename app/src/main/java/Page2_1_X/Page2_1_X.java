@@ -316,10 +316,17 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
                     useTime = detailIntro[2];
                 }
 
-                // 스트링 비교할땐ㄴ equals쓰자^^^6,,,, 눈물 좔좔
-                Log.i("useTime", useTime);
-                if (useTime.equals("10")) {
-                    useTime = null;
+//                // 스트링 비교할땐ㄴ equals쓰자^^^6,,,, 눈물 좔좔
+//                Log.i("useTime", useTime);
+                if (useTime != null) {
+                    if (useTime.equals("10")) {
+                        useTime = null;
+                    }
+                }
+                if (infoCenter != null) {
+                    if (infoCenter.equals("10")) {
+                        infoCenter = null;
+                    }
                 }
 
                 if (infoCenter != null) {

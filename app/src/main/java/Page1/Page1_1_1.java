@@ -1,5 +1,6 @@
 package Page1;
 
+import Page2_1_1.OnItemClick;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -24,9 +25,15 @@ public class Page1_1_1 extends AppCompatActivity {
 
     private ArrayList<String > mySpot = new ArrayList<String >();
     private ArrayList<String > myCity = new ArrayList<String >();
+    private ArrayList<String > myContentId = new ArrayList<String >();
+
+    private List<String > cityList = new ArrayList<>(); // 도시 저장할 리스트
+    private ArrayList<String> allList = new ArrayList<>();  // 모두 다 받을 리스트
 
     private DbOpenHelper mDbOpenHelper;
-    String sort = "userid";
+    String sort = "cityname";
+
+    OnItemClick mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +53,31 @@ public class Page1_1_1 extends AppCompatActivity {
 
         showDatabase(sort);
 
-        // 리사이클러뷰 헤더
-        name.add("나의 관광지");
+//        // 리사이클러뷰 헤더
+//        name.add("나의 관광지");
 
-
-        for (int i = 0 ; i < mySpot.size() ; i++) {
-            items.add(new Recycler_item("", mySpot.get(i), "1234", "역사", myCity.get(i)));
+        // 헤더에 도시 이름 넣기
+        for (int i = 0 ; i < cityList.size() ; i++) {
+            name.add(cityList.get(i));
         }
 
+        // 아이템 넣기
+        for (int i = 0 ; i < mySpot.size() ; i++) {
+            items.add(new Recycler_item("", mySpot.get(i), myContentId.get(i), "역사", myCity.get(i)));
+        }
+
+        Log.i("들어간 아이템 개수", String.valueOf(items.size()));
+
+//        if (cityList != null && mySpot != null) {
+//            for (int i = 0; i < cityList.size(); i++) {
+//                name.add(cityList.get(i));
+//                for (int j = 0; j < mySpot.size(); j++) {
+//                    if (cityList.get(j) == name.get(i)) {
+//                        items.add(new Recycler_item("", mySpot.get(j), myContentId.get(j), "역사", cityList.get(j)));
+//                    }
+//                }
+//            }
+//        }
         adapter.notifyDataSetChanged();
 
     }
@@ -92,18 +116,36 @@ public class Page1_1_1 extends AppCompatActivity {
     }
 
     public void showDatabase(String sort){
-        Cursor iCursor = mDbOpenHelper.selectColumns();
+        Cursor iCursor = mDbOpenHelper.sortColumn(sort);
         //iCursor.moveToFirst();
         Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+        String result;
         mySpot.clear();
 
         while(iCursor.moveToNext()){
             String tempName = iCursor.getString(iCursor.getColumnIndex("name"));
             String tempCityName = iCursor.getString(iCursor.getColumnIndex("cityname"));
+            String tempContentId = iCursor.getString(iCursor.getColumnIndex("userid"));
 
             mySpot.add(tempName);
             myCity.add(tempCityName);
+//            Log.i("갯수", String.valueOf(cityList.size()));
+            myContentId.add(tempContentId);
+
+//            result = tempName + tempContentId;
+//            allList.add(result);
+//            Log.i("전체 데이터 개수", String.valueOf(allList.size()));
         }
+
+        Cursor iCursorCityName = mDbOpenHelper.sortCityColumn(sort);
+
+        while (iCursorCityName.moveToNext()) {
+            String tempCityName = iCursorCityName.getString(iCursorCityName.getColumnIndex("cityname"));
+
+            cityList.add(tempCityName);
+            Log.i("갯수", String.valueOf(cityList.size()));
+        }
+
     }
 
 

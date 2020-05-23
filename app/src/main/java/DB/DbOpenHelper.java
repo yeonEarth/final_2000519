@@ -107,7 +107,13 @@ public class DbOpenHelper {
 
     // sort by column
     public Cursor sortColumn(String sort){
-        Cursor c = mDB.rawQuery( "SELECT * FROM usertable ORDER BY " + sort + ";", null);
+        Cursor c = mDB.rawQuery( "SELECT DISTINCT * FROM usertable ORDER BY " + sort + " ASC;", null);
+        return c;
+    }
+
+    // 도시 이름만 검색 및 중복 제거
+    public Cursor sortCityColumn(String sort) {
+        Cursor c = mDB.rawQuery( "SELECT DISTINCT cityname FROM usertable ORDER BY " + sort + " ASC;", null);
         return c;
     }
 }

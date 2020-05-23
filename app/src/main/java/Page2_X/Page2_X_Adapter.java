@@ -101,6 +101,7 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
                 } else{
                     holder.heart.setBackgroundResource(R.drawable.ic_icon_addmy);
                     stay[position] = null;
+                    mCallback.delete_db(item.getContentviewID());
                     Toast.makeText(context,"관심관광지를 취소했습니다",Toast.LENGTH_SHORT).show();
                 }
             }

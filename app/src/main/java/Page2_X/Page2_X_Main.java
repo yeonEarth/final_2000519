@@ -144,7 +144,6 @@ public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface
         mapExpand_btn = (Button)findViewById(R.id.expand_btn);
         arrow_btn = (Button)findViewById(R.id.arrow_btn);
         asyncDialog= new ProgressDialog( this);
-        adapter = new Page2_X_Adapter(getApplicationContext(), items, st_name, this);
         appBarLayout = (AppBarLayout)findViewById(R.id.app_bar);
 
         //위아래로 드래그 했을 때 변화를 감지하는 부분
@@ -198,6 +197,8 @@ public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface
             // 메인에서 검색 눌렀을 때
             st_name = intent.getStringExtra("st_name");
         }
+
+        adapter = new Page2_X_Adapter(getApplicationContext(), items, st_name, this);
 
         TextView search_name = (TextView) findViewById(R.id.search_name);
         search_name.setText(st_name);

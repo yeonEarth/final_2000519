@@ -157,10 +157,6 @@ public class Page2_1_1_Fragment extends Fragment implements OnItemClick{
         return v;
     }
 
-
-
-
-
     //앞 액티비티에서 선택된 역과 같은 역을 찾는다.
     private void compareStation(){
         for(int i=0; i<_name.length; i++){

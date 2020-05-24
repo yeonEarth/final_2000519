@@ -4,6 +4,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
     Page1_1_1_SecondAdapter adapter;
     private List<Page1_1_1.Recycler_item> items;    // 아이템
     private DbOpenHelper mDbOpenHelper;
+
+    String id;
 
     private List<Page1_1_1.Recycler_item> listForSecond = new ArrayList<>();    // 두 번째 어댑터로 보낼 어레이
 
@@ -122,6 +126,22 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
         mDbOpenHelper.close();
        // items.clear();
         delete_dialog();
+    }
+
+    @Override
+    public String isClick(String countid) {
+        mDbOpenHelper.open();
+        Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
+        Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+
+        while (iCursor.moveToNext()) {
+            String userId = iCursor.getString(iCursor.getColumnIndex("userid"));
+
+            id = userId;
+        }
+        mDbOpenHelper.close();
+
+        return id;
     }
 
     @Override

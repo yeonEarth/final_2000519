@@ -30,7 +30,7 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
     private Context context;
     private List<Page2_X_Main.Recycler_item> items;  //리사이클러뷰 안에 들어갈 값 저장
     private Page2_X_Interface mCallback;
-    String cityName;
+    String cityName, click;
 
 
     //메인에서 불러올 때, 이 함수를 씀
@@ -87,6 +87,14 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
         Glide.with(context).load(item.getImage()).centerCrop().into(holder.image);
         holder.title.setText(item.getTitle());
 
+        click = mCallback.isClick(item.getContentviewID());
+        if (click.equals(item.getContentviewID())) {
+            holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
+            stay[position] = "ON";
+        } else {
+            holder.heart.setBackgroundResource(R.drawable.ic_icon_addmy);
+            stay[position] = null;
+        }
 
         //하트누르면 내부 데이터에 저장
         holder.heart.setOnClickListener(new View.OnClickListener() {

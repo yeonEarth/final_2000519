@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
@@ -59,7 +60,7 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
 
     ArrayList<Integer> defaultImage = new ArrayList<>();    // 이미지 없을 때 보여지는 화면
 
-    String returnResult, url;
+    String returnResult, url, id, click;
     String addr;
 
     boolean buttonState = false;
@@ -141,6 +142,16 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
 
         // 버튼 눌림효과
         add_btn = (Button) findViewById(R.id.page2_1_1_like);
+
+        click = mCallBack.isClick(contentID);
+        if (click.equals(contentID)) {
+            buttonState = true;
+            add_btn.setBackgroundResource(R.drawable.ic_icon_add_float_2);
+        } else {
+            buttonState = false;
+            add_btn.setBackgroundResource(R.drawable.ic_icon_add_float_1);
+        }
+
         add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -487,6 +498,22 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
 
         // 다이얼로그 띄우기
         delete_dialog();
+    }
+
+    @Override
+    public String isClick(String countid) {
+        mDbOpenHelper.open();
+        Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
+        Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+
+        while (iCursor.moveToNext()) {
+            String userId = iCursor.getString(iCursor.getColumnIndex("userid"));
+
+            id = userId;
+        }
+        mDbOpenHelper.close();
+
+        return id;
     }
 
     public void delete_dialog() {

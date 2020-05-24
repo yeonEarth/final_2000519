@@ -35,7 +35,7 @@ public class Page2_1_1_CardViewAdapter extends RecyclerView.Adapter<Page2_1_1_Ca
     private String[] stay = new String[5];  // 하트의 클릭 여부
     private List<Recycler_item> items;  //리사이클러뷰 안에 들어갈 값 저장
     OnItemClick mCallback;
-    String cityName;
+    String cityName, click;
 
     Context context;
 
@@ -66,6 +66,15 @@ public class Page2_1_1_CardViewAdapter extends RecyclerView.Adapter<Page2_1_1_Ca
 
         holder.title.setText(item.getTitle());
         holder.type.setText(item.getType());
+
+        click = mCallback.isClick(item.getContentviewID());
+        if (click.equals(item.getContentviewID())) {
+            holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
+            stay[position] = "ON";
+        } else {
+            holder.heart.setBackgroundResource(R.drawable.ic_icon_addmy);
+            stay[position] = null;
+        }
 
         //하트누르면 내부 데이터에 저장
         holder.heart.setOnClickListener(new View.OnClickListener() {

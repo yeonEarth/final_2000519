@@ -62,6 +62,15 @@ public class Page2_CardView_adapter extends RecyclerView.Adapter<Page2_CardView_
 
         holder.type.setText(item.getType());
 
+        click = mCallback.isClick(item.getContentviewID());
+        if (click.equals(item.getContentviewID())) {
+            holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
+            stay[position] = "ON";
+        } else {
+            holder.heart.setBackgroundResource(R.drawable.ic_icon_addmy);
+            stay[position] = null;
+        }
+
         //하트누르면 내부 데이터에 저장
         holder.heart.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

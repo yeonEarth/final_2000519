@@ -19,6 +19,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -74,6 +75,8 @@ public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface
 
     //name_1를 "  " 단위로 쪼개서 넣은 배열
     String name_2[] = new String[5];
+
+    String id;
 
     //api 관련
     int page = 1;     //api 페이지 수
@@ -902,6 +905,22 @@ public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface
     @Override
     public void delete_db(String contentId) {
 
+    }
+
+    @Override
+    public String isClick(String countid) {
+        mDbOpenHelper.open();
+        Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
+        Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+
+        while (iCursor.moveToNext()) {
+            String userId = iCursor.getString(iCursor.getColumnIndex("userid"));
+
+            id = userId;
+        }
+        mDbOpenHelper.close();
+
+        return id;
     }
 
     @Override

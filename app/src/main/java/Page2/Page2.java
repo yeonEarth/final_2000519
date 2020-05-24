@@ -441,7 +441,7 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
     }
 
     @Override
-    public void isClick(String countid) {
+    public String isClick(String countid) {
         mDbOpenHelper.open();
         Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
         Log.d("showDatabase", "DB Size: " + iCursor.getCount());
@@ -452,6 +452,8 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
             id = userId;
         }
         mDbOpenHelper.close();
+
+        return id;
     }
 
     @Override

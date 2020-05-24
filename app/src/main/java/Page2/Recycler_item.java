@@ -8,6 +8,7 @@ public class Recycler_item {
     String type;
     String areaCode;
     String sigunguCode;
+    String id;
 
     public String getImage() {
         return this.image;

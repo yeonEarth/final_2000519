@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -40,6 +41,7 @@ public class Page2_1_1_Fragment extends Fragment implements OnItemClick{
     private String  station, subject, isMake;
     private String contentTypeId, cat1, cat2;
     private DbOpenHelper mDbOpenHelper;
+    String id;
 
     //역 이름을 받아서 지역코드랑 시군구코드 받기 위한 배열
     int station_code = 49;
@@ -213,6 +215,22 @@ public class Page2_1_1_Fragment extends Fragment implements OnItemClick{
         mDbOpenHelper.close();
 
         delete_dialog();
+    }
+
+    @Override
+    public String isClick(String countid) {
+        mDbOpenHelper.open();
+        Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
+        Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+
+        while (iCursor.moveToNext()) {
+            String userId = iCursor.getString(iCursor.getColumnIndex("userid"));
+
+            id = userId;
+        }
+        mDbOpenHelper.close();
+
+        return id;
     }
 
     @Override

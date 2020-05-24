@@ -3,6 +3,7 @@ package com.example.hansol.spot_200510_hs;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -30,6 +31,13 @@ public class Page0 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page0);
+
+        // Page1에 눌렸다고 알려주기
+        int firstFin = 1;
+        SharedPreferences a = getSharedPreferences("a", MODE_PRIVATE);
+        SharedPreferences.Editor editor = a.edit();
+        editor.putInt("First", firstFin);
+        editor.commit();
 
         btn_later = (TextView) findViewById(R.id.page0_later_btn);
         btn_start = (TextView) findViewById(R.id.page0_start_btn);

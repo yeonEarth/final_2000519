@@ -88,6 +88,10 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
         holder.title.setText(item.getTitle());
 
         click = mCallback.isClick(item.getContentviewID());
+        if (click == null) {
+            click = "";
+        }
+
         if (click.equals(item.getContentviewID())) {
             holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
             stay[position] = "ON";

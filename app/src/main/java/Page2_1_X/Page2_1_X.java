@@ -144,6 +144,10 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
         add_btn = (Button) findViewById(R.id.page2_1_1_like);
 
         click = mCallBack.isClick(contentID);
+        if (click == null) {
+            click = "";
+        }
+
         if (click.equals(contentID)) {
             buttonState = true;
             add_btn.setBackgroundResource(R.drawable.ic_icon_add_float_2);

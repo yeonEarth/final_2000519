@@ -2,6 +2,7 @@ package Page1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -22,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hansol.spot_200510_hs.Page0;
 import com.example.hansol.spot_200510_hs.R;
 
 import java.util.ArrayList;
@@ -71,6 +73,15 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page1);
 
+        SharedPreferences preferences =getSharedPreferences("a", MODE_PRIVATE);
+        int firstviewShow = preferences.getInt("First", 0);
+
+        // 1이 아니라면 취향파악페이지 보여주기 = 처음 실행이라면
+        if (firstviewShow != 1) {
+            Intent intent = new Intent(Page1.this, Page0.class);
+            startActivity(intent);
+        }
+
         // DB열기
         mDbOpenHelper = new DbOpenHelper(this);
         mDbOpenHelper.open();
@@ -82,9 +93,13 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
         // 나중에 하기 버튼 눌렀을 때 임의의 값 넘겨주기
         if (intent.hasExtra("Main")) {
             score = intent.getIntArrayExtra("Main");
-        } else {
+        } else if (intent.hasExtra("Page9")) {
             // 설문조사 진행 했을 때
             score = intent.getIntArrayExtra("Page9");
+        } else {
+            score[1] = 3;
+            score[4] = 1;
+            score[5] = 0;
         }
 
         main_schedule = (ImageButton) findViewById(R.id.main_schedule);

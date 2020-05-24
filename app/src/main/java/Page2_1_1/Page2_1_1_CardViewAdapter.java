@@ -68,6 +68,10 @@ public class Page2_1_1_CardViewAdapter extends RecyclerView.Adapter<Page2_1_1_Ca
         holder.type.setText(item.getType());
 
         click = mCallback.isClick(item.getContentviewID());
+        if (click == null) {
+            click = "";
+        }
+
         if (click.equals(item.getContentviewID())) {
             holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
             stay[position] = "ON";

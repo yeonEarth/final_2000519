@@ -19,13 +19,7 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="2fe6d0a7f5064728003967619a2ecbe8" />
 
-        <activity android:name=".Page0">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Page0"/>
         <activity android:name=".Page0_3" />
         <activity android:name=".Page0_2" />
         <activity android:name=".Page0_4" />
@@ -34,7 +28,13 @@
         <activity android:name=".Page0_7" />
         <activity android:name=".Page0_8" />
         <activity android:name=".Page0_9" />
-        <activity android:name="Page1.Page1" />
+        <activity android:name="Page1.Page1" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="Page1.Page1_1_0" />
         <activity android:name="Page1.Page1_1_1" />
         <activity android:name="Page2.Page2" />

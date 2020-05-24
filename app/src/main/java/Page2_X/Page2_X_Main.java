@@ -893,9 +893,9 @@ public class Page2_X_Main extends AppCompatActivity implements Page2_X_Interface
     }
 
     @Override
-    public void make_db(String countId, String name, String cityname) {
+    public void make_db(String countId, String name, String cityname, String type, String image, String click) {
         mDbOpenHelper.open();
-        mDbOpenHelper.insertColumn(countId, name, cityname);
+        mDbOpenHelper.insertColumn(countId, name, cityname, type, image, click);
         mDbOpenHelper.close();
     }
 

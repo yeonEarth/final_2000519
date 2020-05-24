@@ -109,9 +109,9 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
     }
 
     @Override
-    public void make_db(String countId, String name, String cityname) {
+    public void make_db(String countId, String name, String cityname, String type, String image, String click) {
         mDbOpenHelper.open();
-        mDbOpenHelper.insertColumn(countId, name, cityname);
+        mDbOpenHelper.insertColumn(countId, name, cityname, type, image, click);
         mDbOpenHelper.close();
     }
 

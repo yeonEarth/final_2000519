@@ -29,10 +29,10 @@ public class Page2_CardView_adapter extends RecyclerView.Adapter<Page2_CardView_
 
     Context context;
     private Page2 mainActivity;
-    private String[] stay = new String[5];  // 하트의 클릭 여부
+    private String[] stay = new String[999];  // 하트의 클릭 여부
     private List<Recycler_item> cardview_items;  //리사이클러뷰 안에 들어갈 값 저장
    Page2_OnItemClick mCallback;
-    String cityName;
+    String cityName, click;
 
     //메인에서 불러올 때, 이 함수를 씀
     public Page2_CardView_adapter(List<Recycler_item> items, Page2 mainActivity, String cityName, Page2_OnItemClick mCallback) {
@@ -69,7 +69,7 @@ public class Page2_CardView_adapter extends RecyclerView.Adapter<Page2_CardView_
             public void onClick(View v) {
                 if (stay[position] == null) {
                     holder.heart.setBackgroundResource(R.drawable.ic_heart_off);
-                    mCallback.make_db(item.getContentviewID(), item.getTitle(),cityName);   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
+                    mCallback.make_db(item.getContentviewID(), item.getTitle(),cityName, item.getType(), item.getImage(), "1", item.getAreaCode(), item.getSigunguCode());   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
                     mCallback.make_dialog();                                       //db에 잘 넣으면 띄우는 다이얼로그(위와 마찬가지로 인터페이스 이용
                     stay[position] = "ON";
                     // Toast.makeText(context,"관심관광지를 눌렀습니다",Toast.LENGTH_SHORT).show();

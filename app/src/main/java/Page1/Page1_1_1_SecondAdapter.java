@@ -50,6 +50,7 @@ public class Page1_1_1_SecondAdapter extends RecyclerView.Adapter<Page1_1_1_Seco
         holder.title.setText(items.get(position).title);
         //이미지뷰에 url 이미지 넣기.
         Glide.with(context).load(item.getImage()).centerCrop().into(holder.imageView);
+        holder.type.setText(item.type);
 
         holder.heart.setOnClickListener(new View.OnClickListener() {
             @Override

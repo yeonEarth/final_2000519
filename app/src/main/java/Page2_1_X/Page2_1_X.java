@@ -67,6 +67,7 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
     TextView title;
     String spot_title;
     String contentID;
+    String image, cityName;
     String type, cat1, cat2 = "";    // 앞에서 받아온 타입 저장
     String contentTypeId;   // 아이디로 저장
     ImageView back_btn;
@@ -129,6 +130,8 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
         spot_title = intent.getStringExtra("title");
         contentID = intent.getStringExtra("contentID");
         type = intent.getStringExtra("contenttypeid");
+        image = intent.getStringExtra("image");
+        cityName = intent.getStringExtra("cityname");
 
         url_code();
 
@@ -151,7 +154,7 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
                     // 버튼 처음 누를 때
                     buttonState = true;
                     add_btn.setBackgroundResource(R.drawable.ic_icon_add_float_2);
-                    mCallBack.make_db(contentID, spot_title, "서울");   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
+                    mCallBack.make_db(contentID, spot_title, cityName, type, image, "1");   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
                     mCallBack.make_dialog();                                       //db에 잘 넣으면 띄우는 다이얼로그(위와 마찬가지로 인터페이스 이용
                     Toast.makeText(getApplicationContext(),"관심관광지를 추가했습니다",Toast.LENGTH_SHORT).show();
                 }
@@ -470,9 +473,9 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
     }
 
     @Override
-    public void make_db(String countId, String name, String cityname) {
+    public void make_db(String countId, String name, String cityname, String type, String image, String click) {
         mDbOpenHelper.open();
-        mDbOpenHelper.insertColumn(countId, name, cityname);
+        mDbOpenHelper.insertColumn(countId, name, cityname, type, image, click);
         mDbOpenHelper.close();
     }
 

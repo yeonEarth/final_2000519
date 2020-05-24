@@ -142,7 +142,7 @@ public class Page2_1_1_Fragment extends Fragment implements OnItemClick{
 
                 //리사이클러에 들어갈 데이터를 넣는다
                 for (int i = 0; i < name_1.length; i++) {
-                    items.add(new Recycler_item(img_Url[i], name[i], contentid[i] , subject));
+                    items.add(new Recycler_item(img_Url[i], name[i], contentid[i] , subject, "", ""));
                 }
 
             } catch (InterruptedException ex) {
@@ -200,9 +200,9 @@ public class Page2_1_1_Fragment extends Fragment implements OnItemClick{
     }
 
     @Override
-    public void make_db(String countId, String name, String cityname) {
+    public void make_db(String countId, String name, String cityname, String type, String image, String click) {
         mDbOpenHelper.open();
-        mDbOpenHelper.insertColumn(countId, name, cityname);
+        mDbOpenHelper.insertColumn(countId, name, cityname, type, image, click);
         mDbOpenHelper.close();
     }
 

@@ -2,6 +2,8 @@ package Page2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,6 +23,10 @@ import com.example.hansol.spot_200510_hs.R;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +44,16 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
 public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
+    int station_code = 999;
+    String[] arr_line = null;
+    String[] _name = new String[station_code];           //txt에서 받은 역이름
+    String[] _areaCode = new String[station_code];       //txt에서 받은 지역코드
+    String[] _sigunguCode = new String[station_code];    //txt에서 받은 시군구코드
+    String[] _x = new String[station_code];              //txt에서 받은 x좌표
+    String[] _y = new String[station_code];              //txt에서 받은 y좌표
+    String[] _benefitURL = new String[station_code];     //txt에서 받은 혜택url
+    String st_name, areaCode, sigunguCode, benefitURL, cityName;            //전달받은 역의 지역코드, 시군구코드, 혜택URL, 도시 이름
+    Double x, y;                                         //전달받은 역의 x,y 좌표
 
     ArrayList<course> items = new ArrayList<>();
 
@@ -45,20 +61,21 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
     List<Recycler_item> cardview_items = new ArrayList<>();
 
     Page2 mainActivity;
-    private String  subject, station;
+    private String  subject, station, id;
     private String contentTypeId, cat1, cat2;
 
     //역 이름을 받아서 지역코드랑 시군구코드 받기 위한 배열
-    int station_code = 49;
     String returnResult, url;
 
     String name_1[];  //returnResult를 줄바꿈 단위로 쪼개서 넣은 배열/ name_1[0]에는 한 관광지의 이름,url,contentId,위치가 다 들어가 있다.
     String name_2[] = new String[3];  //name_1를 "  " 단위로 쪼개서 넣은 배열/ [0]= contentID/ [1]=mapx/ [2]에= mapy/ [3]= img_Url/ [4]= name이 들어가 있다.
 
     //xml 파싱한 값을 분류해서 쪼개 넣음
-    String name[] = new String[99999];        //관광지 이름
-    String img_Url[] = new String[9999];     //이미지 URL
-    String contentid[] = new String[99999];   //관광지ID
+    String name[] = new String[station_code];        //관광지 이름
+    String img_Url[] = new String[station_code];     //이미지 URL
+    String contentid[] = new String[station_code];   //관광지ID
+    String sigungucode_arr[] = new String[station_code];   // 시군구 코드
+    String areacode_arr[] = new String[station_code];  // area 코드
 
     //page2 코스 텍스트
     TextView t1, t2, t3, t4, t5, t6, t7, t8;
@@ -187,6 +204,7 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
 
         //url에 들어갈 contentTypeId, cat1, cat2 코드를 찾기
         url_code();
+        settingList();
 
         //관광 api 연결
         SearchTask task = new SearchTask();
@@ -201,20 +219,26 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
                 name_2 = name_1[i].split("  ");
 
                 //img_Url이 없는 경우도 있기 때문에, length = 3 = 있음/ 2 = 없음
-                if (name_2.length == 3) {
-                    contentid[i] = name_2[0];
-                    img_Url[i] = name_2[1];
-                    name[i] = name_2[2];
+                if (name_2.length == 5) {
+                    areacode_arr[i] = name_2[0];
+                    contentid[i] = name_2[1];
+                    img_Url[i] = name_2[2];
+                    sigungucode_arr[i] = name_2[3];
+                    name[i] = name_2[4];
                 } else {
-                    contentid[i] = name_2[0];
+                    areacode_arr[i] = name_2[0];
+                    contentid[i] = name_2[1];
                     img_Url[i] = null;
-                    name[i] = name_2[1];
+                    sigungucode_arr[i] = name_2[2];
+                    name[i] = name_2[3];
                 }
+
+//                Log.i("왜 안들어가", sigungucode_arr[i] + areacode_arr[i]);
             }
 
             //리사이클러에 들어갈 데이터를 넣는다
             for (int i = 0; i < name_1.length; i++) {
-                cardview_items.add(new Recycler_item(img_Url[i], name[i], contentid[i] , subject));
+                cardview_items.add(new Recycler_item(img_Url[i], name[i], contentid[i] , subject, areacode_arr[i], sigungucode_arr[i]));
             }
 
         } catch (InterruptedException ex) {
@@ -223,8 +247,10 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
             ex.printStackTrace();
         }
 
+
+
         //리사이클러뷰 연결
-        recyclerView.setAdapter(new Page2_CardView_adapter(cardview_items, mainActivity, "cityname", this));
+        recyclerView.setAdapter(new Page2_CardView_adapter(cardview_items, mainActivity, cityName, this));
 
         courseMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,6 +263,47 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
                 startActivity(intent);
             }
         });
+    }
+
+    //txt 돌려 역 비교할 배열 만들기(이름 지역코드 동네코드)<-로 구성
+    private void settingList(){
+        String readStr = "";
+        AssetManager assetManager = getResources().getAssets();
+        InputStream inputStream = null;
+        try{
+            inputStream = assetManager.open("station_code.txt");
+            //버퍼리더에 대한 설명 참고 : https://coding-factory.tistory.com/251
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String str = null;
+            while (((str = reader.readLine()) != null)){ readStr += str + "\n";}
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] arr_all = readStr.split("\n"); //txt 내용을 줄바꿈 기준으로 나눈다.
+
+        //한 줄의 값을 띄어쓰기 기준으로 나눠서, 역명/지역코드/시군구코드 배열에 넣는다.
+        for(int i=0; i <arr_all.length; i++) {
+            arr_line = arr_all[i].split(" ");
+
+            _name[i] = arr_line[0];         //서울
+            _areaCode[i] = arr_line[1];     //1
+            _sigunguCode[i] = arr_line[2];  //0
+            _y[i] = arr_line[3];            //y좌표
+            _x[i] = arr_line[4];            //x좌표
+            _benefitURL[i] = arr_line[5];
+        }
+    }
+
+    private String compareStation(String area, String sigunguCode){
+        Log.i("맞냐?? ", area + "/" + sigunguCode);
+        for(int p = 0; p < 234;p ++){
+            if(_sigunguCode[p].trim().equals(sigunguCode.trim()) && _areaCode[p].trim().equals(area.trim())){
+                Log.i("맞냐 ", "oo");
+                cityName = _name[p];
+            }
+        }
+        return cityName;
     }
 
     private void getData () {
@@ -365,15 +432,31 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
     }
 
     @Override
-    public void make_db(String countId, String name, String cityname) {
+    public void make_db(String countId, String name, String cityname, String type, String image, String click, String areaCode, String sigunguCode) {
+        cityname = compareStation(areaCode, sigunguCode);
+
         mDbOpenHelper.open();
-        mDbOpenHelper.insertColumn(countId, name, cityname);
+        mDbOpenHelper.insertColumn(countId, name, cityname, type, image, click);
+        mDbOpenHelper.close();
+    }
+
+    @Override
+    public void isClick(String countid) {
+        mDbOpenHelper.open();
+        Cursor iCursor = mDbOpenHelper.selectIdCulumns(countid);
+        Log.d("showDatabase", "DB Size: " + iCursor.getCount());
+
+        while (iCursor.moveToNext()) {
+            String userId = iCursor.getString(iCursor.getColumnIndex("userid"));
+
+            id = userId;
+        }
         mDbOpenHelper.close();
     }
 
     @Override
     public void delete_db(String contentId) {
-          mDbOpenHelper.open();
+        mDbOpenHelper.open();
         mDbOpenHelper.deleteColumnByContentID(contentId);
         mDbOpenHelper.close();
 
@@ -460,6 +543,8 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
                 boolean firstimage = false;
                 boolean item = false;
                 boolean contentid = false;
+                boolean sigungucode = false;
+                boolean areacode = false;
 
                 xmlUrl = new URL(url);
                 Log.d("url", url);
@@ -490,6 +575,14 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
                                 title = true;
                                 //Log.d("태그 시작", "태그 시작4");
                             }
+                            if (parser.getName().equals("sigungucode")) {
+                                Log.i("시군구코드", "시군구태그시작");
+                                sigungucode = true;
+                            }
+                            if (parser.getName().equals("areacode")) {
+                                Log.i("지역코드", "지역코드태그시작");
+                                areacode = true;
+                            }
                             break;
                         }
 
@@ -501,6 +594,16 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
                             if (firstimage) {
                                 returnResult += parser.getText() + "  ";
                                 firstimage = false;
+                            }
+                            if (sigungucode) {
+                                returnResult += parser.getText() + "  ";
+                                Log.i("시군구코드", parser.getText());
+                                sigungucode = false;
+                            }
+                            if (areacode) {
+                                returnResult += parser.getText() + "  ";
+                                Log.i("지역코드", parser.getText());
+                                areacode = false;
                             }
                             if (title) {
                                 returnResult += parser.getText() + "\n";

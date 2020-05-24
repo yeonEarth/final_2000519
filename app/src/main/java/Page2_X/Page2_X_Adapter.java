@@ -95,7 +95,7 @@ public class Page2_X_Adapter extends RecyclerView.Adapter<Page2_X_Adapter.ViewHo
             public void onClick(View v) {
                 if(stay[position]==null){
                     holder.heart.setBackgroundResource(R.drawable.ic_heart_on);
-                    mCallback.make_db(item.getContentviewID(), item.getTitle() , cityName);   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
+                    mCallback.make_db(item.getContentviewID(), item.getTitle() , cityName, (String) holder.type.getText(), item.getImage(), "1");   //countId랑 title을 db에 넣으려고 함( make_db라는 인터페이스 이용)
                     mCallback.make_dialog();                                       //db에 잘 넣으면 띄우는 다이얼로그(위와 마찬가지로 인터페이스 이용
                     stay[position] = "ON";
                 } else{

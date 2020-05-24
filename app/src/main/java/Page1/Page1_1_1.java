@@ -26,14 +26,14 @@ public class Page1_1_1 extends AppCompatActivity {
     private ArrayList<String > mySpot = new ArrayList<String >();
     private ArrayList<String > myCity = new ArrayList<String >();
     private ArrayList<String > myContentId = new ArrayList<String >();
+    private ArrayList<String > myType = new ArrayList<String >();
+    private ArrayList<String > myImage = new ArrayList<String >();
 
     private List<String > cityList = new ArrayList<>(); // 도시 저장할 리스트
     private ArrayList<String> allList = new ArrayList<>();  // 모두 다 받을 리스트
 
     private DbOpenHelper mDbOpenHelper;
     String sort = "cityname";
-
-    OnItemClick mCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class Page1_1_1 extends AppCompatActivity {
 
         // 아이템 넣기
         for (int i = 0 ; i < mySpot.size() ; i++) {
-            items.add(new Recycler_item("", mySpot.get(i), myContentId.get(i), "역사", myCity.get(i)));
+            items.add(new Recycler_item(myImage.get(i), mySpot.get(i), myContentId.get(i), myType.get(i), myCity.get(i)));
         }
 
         Log.i("들어간 아이템 개수", String.valueOf(items.size()));
@@ -121,20 +121,20 @@ public class Page1_1_1 extends AppCompatActivity {
         Log.d("showDatabase", "DB Size: " + iCursor.getCount());
         String result;
         mySpot.clear();
+        myType.clear();
 
         while(iCursor.moveToNext()){
             String tempName = iCursor.getString(iCursor.getColumnIndex("name"));
             String tempCityName = iCursor.getString(iCursor.getColumnIndex("cityname"));
             String tempContentId = iCursor.getString(iCursor.getColumnIndex("userid"));
+            String tempType = iCursor.getString(iCursor.getColumnIndex("type"));
+            String tempImage = iCursor.getString(iCursor.getColumnIndex("image"));
 
             mySpot.add(tempName);
             myCity.add(tempCityName);
-//            Log.i("갯수", String.valueOf(cityList.size()));
             myContentId.add(tempContentId);
-
-//            result = tempName + tempContentId;
-//            allList.add(result);
-//            Log.i("전체 데이터 개수", String.valueOf(allList.size()));
+            myType.add(tempType);
+            myImage.add(tempImage);
         }
 
         Cursor iCursorCityName = mDbOpenHelper.sortCityColumn(sort);

@@ -143,6 +143,7 @@ public class Page2_1_X_RecyclerViewAdapter extends RecyclerView.Adapter<Page2_1_
     public static class Detail_item {
         String title;
         String content;
+        String type;
 
         public String getTitle() {
             return title;

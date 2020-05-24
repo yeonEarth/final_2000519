@@ -2,11 +2,15 @@ package com.example.hansol.spot_200510_hs;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import DB.DbOpenHelper;
+import DB.Like_DbOpenHelper;
+import Page2.Page2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import Page1.Page1;
@@ -18,6 +22,9 @@ public class Page0_9 extends AppCompatActivity {
     TextView result_name, result_sub_name;
     TextView edit_profile, course;
     ImageView char_img;
+
+    private Like_DbOpenHelper mDbOpenHelper;
+    String fav = "";    // 취향파악 저장
 
     int[] score = new int[8];
 
@@ -56,6 +63,18 @@ public class Page0_9 extends AppCompatActivity {
         // 앞에서 값 받아오기
         Intent intent = getIntent();
         score = intent.getIntArrayExtra("Page8");
+
+        for (int i = 0 ; i < score.length - 1 ; i++) {
+            fav += score[i] + " ";
+        }
+
+        Log.i("값 확인", fav);
+
+        // DB에 취향 저장하기
+        mDbOpenHelper = new Like_DbOpenHelper(Page0_9.this);
+        mDbOpenHelper.open();
+        mDbOpenHelper.insertLikeColumn(fav);
+        mDbOpenHelper.close();
 
         resultScore();
     }

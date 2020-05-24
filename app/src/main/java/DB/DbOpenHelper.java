@@ -73,7 +73,6 @@ public class DbOpenHelper {
         return mDB.insert(DataBases.CreateDB._TABLENAME0, null, values);
     }
 
-
     // Update DB
     public boolean updateColumn(long id, String userid, String name, String cityname, String type, String image, String click){
         ContentValues values = new ContentValues();

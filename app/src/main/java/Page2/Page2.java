@@ -14,6 +14,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import Page1.Page1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -80,7 +81,7 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
     //page2 코스 텍스트
     TextView t1, t2, t3, t4, t5, t6, t7, t8;
 
-    TextView subject_title;
+    TextView subject_title, logo;
 
     Button all_cat_btn, schedulePlus_btn,schedulePlus_btn2;
 
@@ -121,6 +122,18 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
         subject_title = (TextView) findViewById(R.id.page2_cat);
 
         courseMore = (TextView) findViewById(R.id.page2_courseMore);
+
+        logo = (TextView) findViewById(R.id.page2_logo);
+
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Page2.this, Page1.class);
+                startActivity(intent);
+                intent.addFlags(FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+            }
+        });
 
 
         //텍스트뷰 밑줄

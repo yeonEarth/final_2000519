@@ -16,6 +16,7 @@ public final class DataBases {
         public static final String TYPE = "type";
         public static final String IMAGE = "image";
         public static final String CLICK = "click";
+        public static final String LIKE = "like";
         public static final String _TABLENAME0 = "usertable";
         public static final String _CREATE0 = "create table if not exists "+_TABLENAME0+"("
                 +_ID+" integer primary key autoincrement, "
@@ -24,6 +25,7 @@ public final class DataBases {
                 +CITYNAME+" text not null , "
                 +TYPE+" text not null , "
                 +IMAGE+" text not null , "
-                +CLICK+" text  not null ); ";
+                +CLICK+" text  not null , "
+                +LIKE+" text  not null ); ";
     }
 }

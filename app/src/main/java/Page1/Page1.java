@@ -10,6 +10,7 @@ import android.os.Build;
 
 import DB.DbOpenHelper;
 import DB.Heart_page;
+import DB.Like_DbOpenHelper;
 import Page2_X.Page2_X;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +68,10 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
     private DbOpenHelper mDbOpenHelper;
     String sort = "userid";
 
+    private Like_DbOpenHelper mLikeDpOpenHelper;    // 취향파악 부분
+    String like;
+    String mScore[] = new String[8];
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,19 +92,38 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
         mDbOpenHelper.open();
         mDbOpenHelper.create();
 
-        showDatabase(sort);
+        // 취향파악 DB열기
+        mLikeDpOpenHelper = new Like_DbOpenHelper(this);
+        mLikeDpOpenHelper.open();
+        mLikeDpOpenHelper.create();
 
-        final Intent intent = getIntent();
-        // 나중에 하기 버튼 눌렀을 때 임의의 값 넘겨주기
-        if (intent.hasExtra("Main")) {
-            score = intent.getIntArrayExtra("Main");
-        } else if (intent.hasExtra("Page9")) {
-            // 설문조사 진행 했을 때
-            score = intent.getIntArrayExtra("Page9");
+        showDatabase(sort);
+        showLikeDB();
+
+        // DB에 값이 있다면
+        if (like != null) {
+            // mScore에 일단 값을 쪼개서 저장하고
+            mScore = like.split(" ");
+//            Log.i("mScore", like);
+            for (int i = 0 ; i < mScore.length ; i++) {
+//                Log.i("mScore", mScore[i]);
+                score[i] = Integer.parseInt(mScore[i]); // Int로 캐스팅
+//                Log.i("score", String.valueOf(score[i]));
+            }
         } else {
-            score[1] = 3;
-            score[4] = 1;
-            score[5] = 0;
+            final Intent intent = getIntent();
+            // 나중에 하기 버튼 눌렀을 때 임의의 값 넘겨주기
+            if (intent.hasExtra("Main")) {
+                score = intent.getIntArrayExtra("Main");
+            } else if (intent.hasExtra("Page9")) {
+                // 설문조사 진행 했을 때
+                score = intent.getIntArrayExtra("Page9");
+            } else {
+                // 기본 임의 값
+                score[1] = 3;
+                score[4] = 1;
+                score[5] = 0;
+            }
         }
 
         main_schedule = (ImageButton) findViewById(R.id.main_schedule);
@@ -533,6 +557,16 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
             tempName = setTextLength(tempName,10);
 
             mySpot.add(tempName);
+        }
+    }
+
+    public void showLikeDB() {
+        Cursor likeCursor = mLikeDpOpenHelper.selectColumns();
+        Log.d("showLikeDatabase", "DB Size : " + likeCursor.getCount());
+
+        while (likeCursor.moveToNext()) {
+            String tempLike = likeCursor.getString(likeCursor.getColumnIndex("like"));
+            like = tempLike;
         }
     }
 

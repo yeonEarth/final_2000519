@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+
+import Page2_1_1.Page2_1_1;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +26,8 @@ import java.util.List;
 import Page1.Page1_1_1;
 import Page2_1_1.OnItemClick;
 import Page2_X.Page2_X_CategoryBottom;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class Page2_CardView_adapter extends RecyclerView.Adapter<Page2_CardView_adapter.ViewHolder> {
 

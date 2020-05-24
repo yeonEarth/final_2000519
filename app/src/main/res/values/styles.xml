@@ -80,7 +80,14 @@
     </style>
 
     <style name="course_text">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:letterSpacing" tools:targetApi="lollipop">-0.03</item>
+        <item name="android:fontFamily">@font/notosans_extralight</item>
+    </style>
+
+    <style name="tablayout_text">
+        <item name="android:textSize">16dp</item>
         <item name="android:textColor">#000000</item>
         <item name="android:letterSpacing" tools:targetApi="lollipop">-0.03</item>
         <item name="android:fontFamily">@font/notosans_extralight</item>
@@ -131,8 +138,8 @@
     </style>
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:textSize">11sp</item>
-        <item name="android:fontFamily">@font/notosans_semibold</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/notosans_extralight</item>
     </style>
 
     <style name="page2_tip">

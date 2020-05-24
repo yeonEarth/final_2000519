@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import Page2_1_1.NetworkStatus;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +33,7 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
     Page1_1_1_SecondAdapter adapter;
     private List<Page1_1_1.Recycler_item> items;    // 아이템
     private DbOpenHelper mDbOpenHelper;
+    private boolean isFirst = true;
 
     String id;
 
@@ -63,6 +67,16 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        if(isFirst) {
+            if(position==0){
+
+                selectedItems.put(position, true);
+                prePosition = position;
+            }
+            else{
+                isFirst = false;
+            }
+        }
         listForSecond.clear();
 
         for (int i = 0 ; i < items.size() ; i++) {
@@ -202,6 +216,7 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
         private TextView cityCount;
         private TextView togle;
         private View line;
+        private ScrollView view;
 
 
         public ViewHolder(View itemView) {
@@ -211,6 +226,7 @@ public class Page1_1_1_Adapter extends RecyclerView.Adapter<Page1_1_1_Adapter.Vi
             cityCount = itemView.findViewById(R.id.page1_1_1_city_number);
             togle = itemView.findViewById(R.id.page1_1_1_togle);
             line = itemView.findViewById(R.id.horizon_line);
+            view = itemView.findViewById(R.id.page1_1_1_view);
         }
 
 

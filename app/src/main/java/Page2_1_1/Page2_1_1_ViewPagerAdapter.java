@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,8 @@ public class Page2_1_1_ViewPagerAdapter extends RecyclerView.Adapter<Page2_1_1_V
     private FragmentManager fragmentManager;
     private Page2_1_1.Recyclerview_Rearrange recyclerview_rearrange;
 
+    int numCourse;
+
     //뷰페이져 화면 up&down 관련
     private String determine_API = "delete";
     private int prePosition = -1;
@@ -38,10 +42,11 @@ public class Page2_1_1_ViewPagerAdapter extends RecyclerView.Adapter<Page2_1_1_V
     public static SparseBooleanArray selectedItems = new SparseBooleanArray();
 
     //Activity와 어댑터를 연결
-    public Page2_1_1_ViewPagerAdapter(FragmentManager fragmentManager, ArrayList<course> items, Page2_1_1.Recyclerview_Rearrange recyclerview_rearrange) {
+    public Page2_1_1_ViewPagerAdapter(FragmentManager fragmentManager, ArrayList<course> items, Page2_1_1.Recyclerview_Rearrange recyclerview_rearrange, int numCourse) {
         this.items = items;
         this.fragmentManager = fragmentManager;
         this.recyclerview_rearrange = recyclerview_rearrange;
+        this.numCourse =numCourse;
     }
 
     @Override
@@ -53,6 +58,31 @@ public class Page2_1_1_ViewPagerAdapter extends RecyclerView.Adapter<Page2_1_1_V
 
     @Override
     public void onBindViewHolder(Page2_1_1_ViewPagerAdapter.ViewHolder holder, final int position) {
+        // 앞에서 받아온 값이랑 position이 같으면 펼치기
+        if (numCourse == 1) {
+            //height 값을 임의로 준다.
+            int dpValue = 380;
+            float d = context.getResources().getDisplayMetrics().density;
+            int height = (int) (dpValue * d);
+            holder.vp_bg.getLayoutParams().height = height;
+            holder.vp_bg.requestLayout();
+
+            selectedItems.put(numCourse, true);
+            prePosition = numCourse;
+
+            isFirst = false;
+
+            //인터넷 유무 체크
+            int isNetworkConnect = NetworkStatus.getConnectivityStatus(context);
+            if(isNetworkConnect == 3) {
+                Toast.makeText(context, "인터넷 연결이 필요합니다.", Toast.LENGTH_SHORT).show();
+                determine_API = "delete";
+            } else
+                determine_API = "make";
+        } else {
+            determine_API = "delete";
+        }
+
         //첫번째 아이템은 펼쳐져서 보임
         if(isFirst) {
             if(position==0){

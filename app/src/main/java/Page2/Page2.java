@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,6 +89,8 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
     //page2 코스 더보기
     TextView courseMore;
 
+    LinearLayout courseBox1, courseBox2; // 코스 눌렀을 때
+
     //관광지 주제별 코스를 저장하는 배열
     String getSubject;
     String[] st1;
@@ -118,6 +121,9 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
         t6 = (TextView) findViewById(R.id.page2_course2_txt2);
         t7 = (TextView) findViewById(R.id.page2_course2_txt3);
         t8 = (TextView) findViewById(R.id.page2_course2_txt4);
+
+        courseBox1 = (LinearLayout) findViewById(R.id.page2_course_1);
+        courseBox2 = (LinearLayout) findViewById(R.id.page2_course_2);
 
         subject_title = (TextView) findViewById(R.id.page2_cat);
 
@@ -270,6 +276,33 @@ public class Page2 extends AppCompatActivity implements Page2_OnItemClick {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), subject, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Page2.this, Page2_1_1.class);
+                intent.putExtra("subject_title", subject);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        // 아이템 뷰 선택했을 때
+        // 첫번째 코스 선택 시
+        courseBox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Page2_1_1.class);
+                intent.putExtra("position", 0);
+                intent.putExtra("subject_title", subject);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        // 두 번째 코스 선택 시
+        courseBox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Page2_1_1.class);
+                intent.putExtra("position", 1);
                 intent.putExtra("subject_title", subject);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);

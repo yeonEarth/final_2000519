@@ -107,7 +107,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:layout_marginRight="15dp">
 
                     // 버튼
                     <androidx.appcompat.widget.AppCompatButton
@@ -127,56 +128,64 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:gravity="center_horizontal|center_vertical">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
                     <TextView
                         android:id="@+id/page2_course_txt1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course_txt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course_txt3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course_txt4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                 </LinearLayout>
 
                 // 코스 레이아웃 일정추가 버튼
@@ -184,7 +193,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical">
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_marginLeft="15dp">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/page2_schedulePlus_btn_1"
@@ -212,7 +222,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:layout_marginRight="15dp">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/page2_number_2"
@@ -231,57 +242,65 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:gravity="center_horizontal|center_vertical">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/page2_course2_txt1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course2_txt2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course2_txt3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                     <View
                         android:layout_width="5dp"
                         android:layout_height="8dp"
                         android:layout_marginLeft="14dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_vector_18"/>
+                        android:background="@drawable/ic_vector_18"
+                        android:layout_weight="0"/>
                     <TextView
                         android:id="@+id/page2_course2_txt4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="서울"
-                        android:textAppearance="@style/course_text"/>
+                        android:textAppearance="@style/course_text"
+                        android:layout_weight="1"/>
                 </LinearLayout>
 
                 // 코스 레이아웃 일정추가 버튼
@@ -289,7 +308,8 @@
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical">
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_marginLeft="14dp">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/page2_schedulePlus_btn_2"

@@ -25,6 +25,9 @@ public class Page2_1_1 extends AppCompatActivity {
     String[] st3;
     String[] st4;
 
+    // 앞에서 받아온 포지션
+    int numCourse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +37,13 @@ public class Page2_1_1 extends AppCompatActivity {
         Intent intent = getIntent();
         getSubject = intent.getStringExtra("subject_title");
         Toast.makeText(getApplicationContext(), getSubject, Toast.LENGTH_SHORT).show();
+        numCourse = intent.getIntExtra("position", numCourse);
 
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.page2_1_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //뷰페이저 어댑터를 연결해주면서 프래그먼트 연결
-        viewpager_adapter = new Page2_1_1_ViewPagerAdapter(getSupportFragmentManager(), items, recyclerview_rearrange);
+        viewpager_adapter = new Page2_1_1_ViewPagerAdapter(getSupportFragmentManager(), items, recyclerview_rearrange, numCourse);
         recyclerView.setAdapter(viewpager_adapter);
 
         //뒤로가기 버튼 구현

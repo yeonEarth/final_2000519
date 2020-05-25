@@ -44,6 +44,9 @@ public class Page0_9 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "프로필 편집 버튼 눌림", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Page0_9_PopUp.class);
+                startActivityForResult(intent, 1);
+
             }
         });
 

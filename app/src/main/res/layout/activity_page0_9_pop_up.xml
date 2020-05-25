@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".Page0_9_PopUp"
+    android:background="@drawable/page0_9_box_gray"
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right">
+        <Button
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+           android:text="X"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        // 프로필 사진
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:background="@drawable/round_gray"/>
+
+        // 닉네임
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자연속에서 힐링하기 좋아하는"
+                android:textSize="11dp"
+                android:fontFamily="@font/notosans_extralight"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="평화로운 나무늘보"
+                android:fontFamily="@font/notosans"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right">
+                <Button
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/round_gray" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

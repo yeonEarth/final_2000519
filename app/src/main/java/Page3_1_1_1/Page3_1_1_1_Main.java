@@ -254,7 +254,7 @@ public  class Page3_1_1_1_Main extends AppCompatActivity implements Page3_1_1_1_
 
 
 
-    public class RecycleItem {
+    public static class RecycleItem {
         int type;
         String text;
         String text_shadow;
@@ -262,6 +262,22 @@ public  class Page3_1_1_1_Main extends AppCompatActivity implements Page3_1_1_1_
         String train_time;
         String station_code;
         String contentId;
+
+        String cityName;
+        String title;
+
+        public String getCityName() {
+            return cityName;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public RecycleItem(String title, String cityName) {
+            this.title = title;
+            this.cityName = cityName;
+        }
 
         public RecycleItem(int type, String text_shadow, String text, String  date, String train_time, String station_code, String contentId){
             this.type = type;

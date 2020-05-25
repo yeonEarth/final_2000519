@@ -629,23 +629,28 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
 
                         case XmlPullParser.TEXT: {
                             if (title) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempTitle = Html.fromHtml(parser.getText());
+                                returnResult += tempTitle.toString() + "  ";
                                 title = false;
                             }
                             if (tel) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempTel = Html.fromHtml(parser.getText());
+                                returnResult += tempTel.toString() + "  ";
                                 tel = false;
                             }
                             if (addr1) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempAddr1 = Html.fromHtml(parser.getText());
+                                returnResult += tempAddr1.toString() + "  ";
                                 addr1 = false;
                             }
                             if (mapx) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempMapx = Html.fromHtml(parser.getText());
+                                returnResult += tempMapx.toString() + "  ";
                                 mapx = false;
                             }
                             if (mapy) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempMapy = Html.fromHtml(parser.getText());
+                                returnResult += tempMapy.toString() + "  ";
                                 mapy = false;
                             }
                             break;
@@ -764,7 +769,8 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
                             // 12
                             if (restdate) {
                                 Log.i("restDate", "쉬는날" + restdate);
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempRestDate = Html.fromHtml(parser.getText());
+                                returnResult += tempRestDate.toString() + "  ";
                                 restdate = false;
                             }
                             if (usetime) {
@@ -774,35 +780,42 @@ public class Page2_1_X extends AppCompatActivity implements OnItemClick {
                                 usetime = false;
                             }
                             if (infocenter) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempInfoCenter = Html.fromHtml(parser.getText());
+                                returnResult += tempInfoCenter.toString() + "  ";
                                 infocenter = false;
                             }
 
                             // 14
                             if (restdateculture) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempRestDateCulture = Html.fromHtml(parser.getText());
+                                returnResult += tempRestDateCulture.toString() + "  ";
                                 restdateculture = false;
                             }
                             if (usertimeculture) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempUserTimeCulture = Html.fromHtml(parser.getText());
+                                returnResult += tempUserTimeCulture.toString() + "  ";
                                 usertimeculture = false;
                             }
                             if (infocenterculture) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempInfoCenterCulture = Html.fromHtml(parser.getText());
+                                returnResult += tempInfoCenterCulture.toString() + "  ";
                                 infocenterculture = false;
                             }
 
                             // 28
                             if (restdateleports) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempRestDateLeports = Html.fromHtml(parser.getText());
+                                returnResult += tempRestDateLeports.toString() + "  ";
                                 restdateleports = false;
                             }
                             if (usertimeleports) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempUserTimeLeports = Html.fromHtml(parser.getText());
+                                returnResult += tempUserTimeLeports.toString() + "  ";
                                 usertimeleports = false;
                             }
                             if (infocenterleports) {
-                                returnResult += parser.getText() + "  ";
+                                Spanned tempInfoCenterLeports = Html.fromHtml(parser.getText());
+                                returnResult += tempInfoCenterLeports.toString() + "  ";
                                 infocenterleports = false;
                             }
                             break;

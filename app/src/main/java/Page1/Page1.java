@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hansol.spot_200510_hs.LikeDBPage;
 import com.example.hansol.spot_200510_hs.Page0;
 import com.example.hansol.spot_200510_hs.R;
 
@@ -147,7 +148,7 @@ public class Page1 extends AppCompatActivity implements View.OnClickListener {
         main_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(getApplicationContext(), Heart_page.class);
+                Intent intent2 = new Intent(getApplicationContext(), LikeDBPage.class);
                 intent2.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
                 intent2.addFlags(FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent2);

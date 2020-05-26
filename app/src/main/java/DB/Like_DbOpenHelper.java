@@ -54,9 +54,10 @@ public class Like_DbOpenHelper {
     }
 
     // 취향파악 DB insert
-    public long insertLikeColumn(String like) {
+    public long insertLikeColumn(String like, String nickname) {
         ContentValues values = new ContentValues();
         values.put(Like_DataBases.CreateDB.LIKE, like);
+        values.put(Like_DataBases.CreateDB.NICKNAME, nickname);
         return mDB.insert(DataBases.CreateDB._TABLENAME0, null, values);
     }
 
